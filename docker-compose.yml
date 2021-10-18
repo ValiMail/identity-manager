@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  identity-manager:
+    build: .
+    restart: always
+    volumes:
+      - "identity:/etc/dane_id"
+
+volumes:
+  identity:
