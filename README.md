@@ -34,7 +34,7 @@ The container will print a helpful message to stdout if the device's identity is
 * A DNS domain under your control
 * If the DNS domain is not protected by DNSSEC, you will need a web server for static content (Github Pages works well enough for this)
 
-1. Create a service in your docker-compose.yml file as shown [below](#docker-compose).
+1. Create a service in your `docker-compose.yml` file as shown [below](#docker-compose).
 1. Pick a DNS name for your device, or define a pattern if you're planning to represent many devices. You'll set this as the `DANE_ID` environment variable, described below.
    * Follow this pattern: `${DEVICE_ID}._device.${MYDOMAIN}`.
    * `${DEVICE_ID}` is any DNS-compatible string, and may be multiple DNS labels.
@@ -70,7 +70,7 @@ If you're using DNSSEC, all you need to do in this step is to generate a self-si
 If you're not using DNSSEC, pick one:
 
 * Operate your own CA (easy-rsa, SaaS, self-hosted):
-  * Create the keypair and CSR: `./create_id_csr.py`
+  * Create the key pair and CSR: `./create_id_csr.py`
   * Get the contents of the CSR: `cat ${CRYPTO_PATH}/${DANE_ID}.csr.pem`
   * Use your CA to generate a certificate from the CSR.
 * **OR** Just use self-signed certificates.
