@@ -103,7 +103,7 @@ version: "2.1"
 
 services:
   identity-manager:
-    image: gcr.io/ValiMail/identity-manager
+    image: ghcr.io/ValiMail/identity-manager
     restart: always
     volumes:
       - "identity:/etc/dane_id"
