@@ -16,13 +16,10 @@ assets:
 data:
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
-    - raspberry-pi
-    - raspberry-pi2
-    - raspberrypi3
     - raspberrypi3-64
     - raspberrypi4-64
+    - raspberrypicm4-ioboard
     - fincm3
     - intel-nuc
     - jetson-nano
-    - beaglebone-black
-version: 0.1.0
+version: 1.0.0
