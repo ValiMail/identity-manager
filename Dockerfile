@@ -20,6 +20,6 @@ RUN apt-get update && \
 
 COPY app/src .
 
-RUN mkdir -p CRYPTO_PATH
+RUN mkdir -p ${CRYPTO_PATH}
 
 CMD python3 ./update_certificate_from_dns.py
