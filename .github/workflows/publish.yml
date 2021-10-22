@@ -2,7 +2,10 @@ name: Build and publish container
 
 on:
   push:
-    branches: [main]
+    branches: 
+    - "*"
+    tags: 
+    - "v*"
   workflow_dispatch:
     inputs:
       reason:
@@ -36,11 +39,12 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          # when the branch is main, replace main with latest
-          [ "$VERSION" == "main" ] && VERSION=latest
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
+          # Build the image tags based on git branch and tag
+          IMAGE_TAGS="-t ${IMAGE_ID}:${VERSION}"
+          [ "$VERSION" == "main" ] && IMAGE_TAGS="${IMAGE_TAGS} -t ${IMAGE_ID}:latest"
+          echo "${{ github.ref }}"
           # Build and Publish container image
+          echo "Image tags: ${IMAGE_TAGS}"
           docker buildx build --push \
-          --tag $IMAGE_ID:$VERSION \
+          ${IMAGE_TAGS} \
           --platform linux/amd64,linux/arm64 .
