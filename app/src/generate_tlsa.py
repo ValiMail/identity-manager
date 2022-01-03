@@ -15,9 +15,6 @@ def main():
             sys.exit(1)
     bootstrapper = Bootstrap(os.getenv("DANE_ID"), os.getenv("CRYPTO_PATH"),
                              os.getenv("APP_UID"))
-    cert_obj = bootstrapper.get_local_cert_obj()
-    if not bootstrapper.cert_matches_private_key(cert_obj):
-        print("Public key in certificate does not match private key!")
     if os.getenv("NO_DNSSEC"):
         tlsa_record = bootstrapper.render_tlsa_record(4)
     else:

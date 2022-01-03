@@ -21,9 +21,6 @@ def main():
     bootstrapper.generate_private_key()
     print("Generating self-signed certificate...")
     bootstrapper.generate_selfsigned_certificate()
-    print("Test key and certificate...")
-    cert_obj = bootstrapper.get_local_cert_obj()
-    bootstrapper.cert_matches_private_key(cert_obj)
     print("Identity created locally. Now, run generate_tlsa.py.")
     return
 
