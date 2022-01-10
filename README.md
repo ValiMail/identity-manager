@@ -115,6 +115,15 @@ volumes:
 
 Mount the `identity` volume into the container needing to access the private key.
 
+## Maintenance
+
+Updating this Balena Block is a multi-step process. From the `main` branch:
+
+1. Update the version in [balena.yml](balena.yml).
+1. Update the [CHANGELOG.md](changelog.md) file with `gitchangelog > CHANGELOG.md`.
+1. Commit your changes to the repo, and tag the commit following this pattern: `v${VERSION}` where `${VERSION}` is the version defined in [balena.yml](balena.yml). If the version in [balena.yml](balena.yml) is `1.1.1`, the tag should be `v1.1.1`.
+1. Push the new commit and tag to Github, and Github Actions takes care of the rest. Monitor to ensure that the new version appears in the container registry.
+
 ## Notes
 
 * While this is all based on standards and functionality that you can replicate with open-source technology, Valimail provides an easy interface and API for managing DNS-bound identities like this, at scale. If you want to automate the bootstrapping process, reach out to iot@valimail.com for access to the beta!
