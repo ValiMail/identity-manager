@@ -32,11 +32,15 @@ def main():
         time.sleep(20)
         sys.exit(1)
     try:
+        print("Instantiating Identity abstraction.")
         identity = Identity(bootstrapper.identity_name)
+        print("Retrieving certificate from DNS.")
         dns_cert_obj = identity.get_first_entity_certificate()
+        print("Extracting public key from certificate.")
         asset = dns_cert_obj.public_bytes(serialization.Encoding.PEM)
+        print("Writing the certificate from DNS to the local filesystem.")
         bootstrapper.write_pki_asset(asset, "cert")
-        print("Local cert matches DNS cert.")
+        print("Local cert now matches DNS cert.")
     except TLSAError as err:
         print("Error retrieving certificate from DNS: {}".format(err))
         time.sleep(20)

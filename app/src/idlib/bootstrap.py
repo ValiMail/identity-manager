@@ -122,6 +122,8 @@ class Bootstrap:
         ).not_valid_after(datetime.datetime.utcnow() +
                           datetime.timedelta(days=10)
         ).add_extension(subject_alt_name, critical=False,
+        ).add_extension(x509.AuthorityKeyIdentifier.from_issuer_public_key(key.public_key()), critical=False
+        ).add_extension(x509.SubjectKeyIdentifier.from_public_key(key.public_key()), critical=False
         ).sign(key, hashes.SHA256())
         self.write_pki_asset(cert.public_bytes(serialization.Encoding.PEM), 
                              "cert")
